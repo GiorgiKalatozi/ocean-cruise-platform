@@ -1,3 +1,6 @@
-const a = 2 + 2 + 10;
+console.log("hello from main");
+function test(name: string, age: number) {
+  return `name: ${name} age: ${age}`;
+}
 
-console.log(a);
+console.log(test("giorgi", 20));
