@@ -1,7 +1,7 @@
 {
   "name": "ocean-cruise-platform",
   "version": "1.0.0",
-  "description": "",
+  "description": "Ocean Cruise Platform",
   "type": "commonjs",
   "main": "dist/main.js",
   "scripts": {
