@@ -1,0 +1,21 @@
+{
+  "name": "ocean-cruise-platform",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "nodemon src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3"
+  }
+}
