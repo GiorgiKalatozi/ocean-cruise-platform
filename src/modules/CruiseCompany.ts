@@ -1,7 +1,29 @@
 import { Location, Route } from "../types";
+import { Booking } from "./Booking";
+import { CrewMember } from "./CrewMember";
 
 export class CruiseCompany {
-  private routes: Route[] = [];
+  private readonly routes: Route[] = [];
+
+  private readonly bookings: Booking[] = [];
+
+  private readonly crewMembers: CrewMember[] = [];
+
+  getRoutes(): Route[] {
+    return this.routes;
+  }
+
+  getBookings(): Booking[] {
+    return this.bookings;
+  }
+
+  getCrewMembers(): CrewMember[] {
+    return this.crewMembers;
+  }
+
+  addCrewMember(crewMember: CrewMember): void {
+    this.crewMembers.push(crewMember);
+  }
 
   setRoute(
     name: string,
@@ -19,7 +41,8 @@ export class CruiseCompany {
     });
   }
 
-  getRoutes(): Route[] {
-    return this.routes;
+  bookCruise(booking: Booking): void {
+    this.bookings.push(booking);
+    console.log("Booking successful!");
   }
 }

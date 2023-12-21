@@ -13,3 +13,10 @@ export interface Route {
   departureDate: Date;
   arrivalDate: Date;
 }
+
+export enum CrewMemberType {
+  Captain = "Captain",
+  Mechanic = "Mechanic",
+  Chef = "Chef",
+  Cleaner = "Cleaner",
+}
