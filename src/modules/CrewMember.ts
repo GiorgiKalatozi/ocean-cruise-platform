@@ -11,6 +11,7 @@ export class CrewMember extends Person {
     super(name);
     this.crewMemberType = crewMemberType;
   }
+
   assignDailyTask(task: Task): void {
     this.dailyTasks.push(task);
   }

@@ -1,13 +1,21 @@
-import { Location, Route } from "../types";
+import { CabinType, Location, Route } from "../types";
 import { Booking } from "./Booking";
 import { CrewMember } from "./CrewMember";
+import { Discount } from "./Discount";
+import { RecreationalActivity } from "./RecreationalActivity";
 
 export class CruiseCompany {
   private readonly routes: Route[] = [];
-
   private readonly bookings: Booking[] = [];
-
   private readonly crewMembers: CrewMember[] = [];
+  private readonly discounts: Discount[] = [];
+
+  constructor(
+    public name: string,
+    public cabinType: CabinType,
+    public recreationalActivities: RecreationalActivity[],
+    public advanceBookingDiscountDays: number
+  ) {}
 
   getRoutes(): Route[] {
     return this.routes;
@@ -23,6 +31,10 @@ export class CruiseCompany {
 
   addCrewMember(crewMember: CrewMember): void {
     this.crewMembers.push(crewMember);
+  }
+
+  addDiscount(discount: Discount): void {
+    this.discounts.push(discount);
   }
 
   setRoute(

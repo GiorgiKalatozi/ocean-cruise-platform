@@ -2,10 +2,12 @@ import { CabinType } from "../types";
 import { RecreationalActivity } from "./RecreationalActivity";
 
 export class CruiseShip {
-  private numberOfCabins: number;
-  private cabinTypes: CabinType[];
-  private includedActivities: { [key in CabinType]: RecreationalActivity[] };
-  private additionalFeeActivities: {
+  private readonly numberOfCabins: number;
+  private readonly cabinTypes: CabinType[];
+  private readonly includedActivities: {
+    [key in CabinType]: RecreationalActivity[];
+  };
+  private readonly additionalFeeActivities: {
     [key in CabinType]: RecreationalActivity[];
   };
 
