@@ -1,7 +1,7 @@
-import { CabinType } from "../types";
 import { CruiseCompany } from "./CruiseCompany";
-import { NotificationService } from "./NotificationService";
+import { NotificationService } from "../services/NotificationService";
 import { RecreationalActivity } from "./RecreationalActivity";
+import { CabinType } from "../types/enums";
 
 export class CruiseCompanyWithNotification extends CruiseCompany {
   private readonly notificationService: NotificationService;
@@ -9,6 +9,7 @@ export class CruiseCompanyWithNotification extends CruiseCompany {
   constructor(
     name: string,
     cabinType: CabinType,
+
     recreationalActivities: RecreationalActivity[],
     advanceBookingDiscountDays: number
   ) {

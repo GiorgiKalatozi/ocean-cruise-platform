@@ -1,4 +1,4 @@
-import { CrewMemberType } from "../types";
+import { CrewMemberType } from "../types/enums";
 import { Person } from "./Person";
 import { Task } from "./Task";
 

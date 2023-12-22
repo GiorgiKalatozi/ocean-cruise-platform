@@ -1,4 +1,6 @@
-import { CabinType, Location, Route } from "../types";
+import { CabinType } from "../types/enums";
+import { Route } from "../types/interfaces";
+import { Location } from "../types/types";
 import { Booking } from "./Booking";
 import { CrewMember } from "./CrewMember";
 import { Discount } from "./Discount";

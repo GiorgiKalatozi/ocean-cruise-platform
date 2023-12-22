@@ -1,4 +1,5 @@
-import { CabinType, Route } from "../types";
+import { CabinType } from "../types/enums";
+import { Route } from "../types/interfaces";
 import { Passenger } from "./Passenger";
 import { Payment } from "./Payment";
 

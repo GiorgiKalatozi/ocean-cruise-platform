@@ -1,5 +1,3 @@
-import { CabinType, CrewMemberType } from "./enums";
-import { Route } from "./interfaces";
 import { Booking } from "./modules/Booking";
 import { CrewMember } from "./modules/CrewMember";
 import { CruiseCompany } from "./modules/CruiseCompany";
@@ -9,6 +7,8 @@ import { Passenger } from "./modules/Passenger";
 import { Payment } from "./modules/Payment";
 import { RecreationalActivity } from "./modules/RecreationalActivity";
 import { Task } from "./modules/Task";
+import { CabinType, CrewMemberType } from "./types/enums";
+import { Route } from "./types/interfaces";
 
 const passenger = new Passenger(
   "Monkey D. Luffy",

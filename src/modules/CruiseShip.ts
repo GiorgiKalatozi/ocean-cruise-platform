@@ -1,4 +1,4 @@
-import { CabinType } from "../types";
+import { CabinType } from "../types/enums";
 import { RecreationalActivity } from "./RecreationalActivity";
 
 export class CruiseShip {
