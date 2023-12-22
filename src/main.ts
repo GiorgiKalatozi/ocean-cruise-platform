@@ -1,14 +1,14 @@
+import { CabinType, CrewMemberType } from "./enums";
+import { Route } from "./interfaces";
 import { Booking } from "./modules/Booking";
 import { CrewMember } from "./modules/CrewMember";
 import { CruiseCompany } from "./modules/CruiseCompany";
 import { CruiseCompanyWithNotification } from "./modules/CruiseCompanyWithNotification";
-import { CruiseShip } from "./modules/CruiseShip";
 import { Discount } from "./modules/Discount";
 import { Passenger } from "./modules/Passenger";
 import { Payment } from "./modules/Payment";
 import { RecreationalActivity } from "./modules/RecreationalActivity";
 import { Task } from "./modules/Task";
-import { CabinType, CrewMemberType, Route } from "./types";
 
 const passenger = new Passenger(
   "Monkey D. Luffy",
@@ -17,20 +17,20 @@ const passenger = new Passenger(
   "device123"
 );
 
-const cruiseShip = new CruiseShip(
-  100, // Number of cabins
-  [CabinType.Economy, CabinType.Business, CabinType.Luxury], // Cabin types
-  {
-    [CabinType.Economy]: ["Swimming"],
-    [CabinType.Business]: ["Gym", "Entertainment"],
-    [CabinType.Luxury]: ["Spa", "Fine Dining", "Excursions"],
-  },
-  {
-    [CabinType.Economy]: ["Massage"],
-    [CabinType.Business]: ["Private Tour"],
-    [CabinType.Luxury]: ["Personal Butler", "Helicopter Ride"],
-  }
-);
+// const cruiseShip = new CruiseShip(
+//   100, // Number of cabins
+//   [CabinType.Economy, CabinType.Business, CabinType.Luxury], // Cabin types
+//   {
+//     [CabinType.Economy]: ["Swimming"],
+//     [CabinType.Business]: ["Gym", "Entertainment"],
+//     [CabinType.Luxury]: ["Spa", "Fine Dining", "Excursions"],
+//   },
+//   {
+//     [CabinType.Economy]: ["Massage"],
+//     [CabinType.Business]: ["Private Tour"],
+//     [CabinType.Luxury]: ["Personal Butler", "Helicopter Ride"],
+//   }
+// );
 
 const recreationalActivities: RecreationalActivity[] = [
   { name: "Swimming Pool", price: 80 },
