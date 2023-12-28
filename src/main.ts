@@ -3,7 +3,7 @@ import { CruiseCompany } from "./modules/CruiseCompany";
 import { CruiseCompanyWithNotification } from "./modules/CruiseCompanyWithNotification";
 import { Discount } from "./modules/Discount";
 import { Passenger } from "./modules/Passenger";
-import { Payment } from "./modules/Payment";
+import { PaymentService } from "./services/PaymentService";
 import { RecreationalActivity } from "./modules/RecreationalActivity";
 import { Route } from "./modules/Route";
 import { BookingService } from "./services/BookingService";
@@ -33,7 +33,7 @@ const cruiseCompany = new CruiseCompany(
   recreationalActivities
 );
 
-const payment = new Payment(500, true);
+const payment = new PaymentService(500, true);
 
 // Create an instance of the Route class
 const routeInstance = new Route(

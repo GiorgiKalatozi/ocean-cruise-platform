@@ -1,7 +1,7 @@
 import { Passenger } from "../modules/Passenger";
-import { Payment } from "../modules/Payment";
 import { Route } from "../modules/Route";
 import { CabinType } from "../types/enums";
+import { PaymentService } from "./PaymentService";
 
 export class BookingService {
   constructor(
@@ -9,7 +9,7 @@ export class BookingService {
     public route: Route,
     public tourName: string,
     public selectedCabinType: CabinType,
-    public payment: Payment,
+    public payment: PaymentService,
     public additionalServices: string[] = []
   ) {}
 
