@@ -4,6 +4,7 @@ import { TaskService } from "../services/TaskService";
 
 export class CrewMember extends Person {
   private readonly crewMemberType: CrewMemberType;
+  private readonly crewMembers: CrewMember[] = [];
 
   constructor(
     name: string,
@@ -21,6 +22,14 @@ export class CrewMember extends Person {
 
   getCrewMemberType(): CrewMemberType {
     return this.crewMemberType;
+  }
+
+  getCrewMembers(): CrewMember[] {
+    return this.crewMembers;
+  }
+
+  addCrewMember(crewMember: CrewMember): void {
+    this.crewMembers.push(crewMember);
   }
 
   assignDailyTask(task: TaskService): void {
