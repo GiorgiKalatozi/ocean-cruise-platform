@@ -4,7 +4,7 @@ export class Route {
   private name: string;
   private forwardRoute: Location[];
   private backRoute?: Location[];
-  private departureDate: Date;
+  public departureDate: Date;
   private arrivalDate: Date;
 
   constructor(

@@ -10,10 +10,9 @@ export class CruiseCompanyWithNotification extends CruiseCompany {
     name: string,
     cabinType: CabinType,
     recreationalActivities: RecreationalActivity[],
-    advanceBookingDiscountDays: number,
     notificationService: NotificationService
   ) {
-    super(name, cabinType, recreationalActivities, advanceBookingDiscountDays);
+    super(name, cabinType, recreationalActivities);
     this.notificationService = notificationService;
   }
 

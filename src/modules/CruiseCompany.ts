@@ -15,8 +15,7 @@ export class CruiseCompany {
   constructor(
     public name: string,
     public cabinType: CabinType,
-    public recreationalActivities: RecreationalActivity[],
-    public advanceBookingDiscountDays: number
+    public recreationalActivities: RecreationalActivity[]
   ) {}
 
   getRoutes(): Route[] {

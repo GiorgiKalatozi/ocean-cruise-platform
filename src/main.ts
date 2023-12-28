@@ -7,6 +7,7 @@ import { Payment } from "./modules/Payment";
 import { RecreationalActivity } from "./modules/RecreationalActivity";
 import { Route } from "./modules/Route";
 import { BookingService } from "./services/BookingService";
+import { NotificationService } from "./services/NotificationService";
 import { TaskService } from "./services/TaskService";
 import { CabinType, CrewMemberType } from "./types/enums";
 
@@ -17,21 +18,6 @@ const passenger = new Passenger(
   "device123"
 );
 
-// const cruiseShip = new CruiseShip(
-//   100, // Number of cabins
-//   [CabinType.Economy, CabinType.Business, CabinType.Luxury], // Cabin types
-//   {
-//     [CabinType.Economy]: ["Swimming"],
-//     [CabinType.Business]: ["Gym", "Entertainment"],
-//     [CabinType.Luxury]: ["Spa", "Fine Dining", "Excursions"],
-//   },
-//   {
-//     [CabinType.Economy]: ["Massage"],
-//     [CabinType.Business]: ["Private Tour"],
-//     [CabinType.Luxury]: ["Personal Butler", "Helicopter Ride"],
-//   }
-// );
-
 const recreationalActivities: RecreationalActivity[] = [
   new RecreationalActivity("Swimming", "Enjoy a refreshing swim in the pool"),
   new RecreationalActivity("Fishing", "Hunt Sharks and Whales"),
@@ -39,13 +25,12 @@ const recreationalActivities: RecreationalActivity[] = [
   new RecreationalActivity("Yoga", "Relax with onboard yoga sessions"),
 ];
 
-const ADVANCE_BOOKING_DISCOUNT_DAYS = 120;
+// const ADVANCE_BOOKING_DISCOUNT_DAYS = 120;
 
 const cruiseCompany = new CruiseCompany(
   "Port Royal",
   CabinType.Business,
-  recreationalActivities,
-  ADVANCE_BOOKING_DISCOUNT_DAYS
+  recreationalActivities
 );
 
 const payment = new Payment(500, true);
@@ -99,11 +84,13 @@ const promoCodeDiscount = new Discount(
 
 cruiseCompany.addDiscount(promoCodeDiscount);
 
+const notificationService = new NotificationService();
+
 const cruiseCompanyWithNotification = new CruiseCompanyWithNotification(
   "Port Royal",
   CabinType.Business,
   recreationalActivities,
-  ADVANCE_BOOKING_DISCOUNT_DAYS
+  notificationService
 );
 
 // Notify passengers before the tour
