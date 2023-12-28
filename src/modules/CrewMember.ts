@@ -25,4 +25,14 @@ export class CrewMember extends Person {
   addCrewMember(crewMember: CrewMember): void {
     this.crewMembers.push(crewMember);
   }
+
+  removeCrewMember(crewMember: CrewMember): void {
+    const index = this.crewMembers.indexOf(crewMember);
+    if (index !== -1) {
+      this.crewMembers.splice(index, 1);
+      console.log(`${crewMember.getName()} has been removed from the crew.`);
+    } else {
+      console.log(`${crewMember.getName()} is not in the crew.`);
+    }
+  }
 }
