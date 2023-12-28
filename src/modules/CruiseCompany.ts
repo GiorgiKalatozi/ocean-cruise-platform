@@ -1,14 +1,14 @@
 import { CabinType } from "../types/enums";
-import { Route } from "../types/interfaces";
 import { Location } from "../types/types";
-import { Booking } from "./Booking";
+import { BookingService } from "../services/BookingService";
 import { CrewMember } from "./CrewMember";
 import { Discount } from "./Discount";
 import { RecreationalActivity } from "./RecreationalActivity";
+import { Route } from "./Route";
 
 export class CruiseCompany {
   private readonly routes: Route[] = [];
-  private readonly bookings: Booking[] = [];
+  private readonly bookings: BookingService[] = [];
   private readonly crewMembers: CrewMember[] = [];
   private readonly discounts: Discount[] = [];
 
@@ -23,7 +23,7 @@ export class CruiseCompany {
     return this.routes;
   }
 
-  getBookings(): Booking[] {
+  getBookings(): BookingService[] {
     return this.bookings;
   }
 
@@ -46,16 +46,12 @@ export class CruiseCompany {
     departureDate: Date,
     arrivalDate: Date
   ): void {
-    this.routes.push({
-      name,
-      forwardRoute,
-      backRoute,
-      departureDate,
-      arrivalDate,
-    });
+    this.routes.push(
+      new Route(name, forwardRoute, departureDate, arrivalDate, backRoute)
+    );
   }
 
-  bookCruise(booking: Booking): void {
+  bookCruise(booking: BookingService): void {
     this.bookings.push(booking);
     console.log("Booking successful!");
   }

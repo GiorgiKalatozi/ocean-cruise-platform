@@ -1,14 +1,12 @@
-import { Booking } from "./modules/Booking";
-import { CrewMember } from "./modules/CrewMember";
 import { CruiseCompany } from "./modules/CruiseCompany";
 import { CruiseCompanyWithNotification } from "./modules/CruiseCompanyWithNotification";
 import { Discount } from "./modules/Discount";
 import { Passenger } from "./modules/Passenger";
 import { Payment } from "./modules/Payment";
 import { RecreationalActivity } from "./modules/RecreationalActivity";
-import { Task } from "./modules/Task";
-import { CabinType, CrewMemberType } from "./types/enums";
-import { Route } from "./types/interfaces";
+import { Route } from "./modules/Route";
+import { BookingService } from "./services/BookingService";
+import { CabinType } from "./types/enums";
 
 const passenger = new Passenger(
   "Monkey D. Luffy",
@@ -32,9 +30,15 @@ const passenger = new Passenger(
 //   }
 // );
 
+// const recreationalActivities: RecreationalActivity[] = [
+//   { name: "Swimming Pool", price: 80 },
+//   { name: "We go gym", price: 50 },
+// ];
 const recreationalActivities: RecreationalActivity[] = [
-  { name: "Swimming Pool", price: 80 },
-  { name: "We go gym", price: 50 },
+  new RecreationalActivity("Swimming", "Enjoy a refreshing swim in the pool"),
+  new RecreationalActivity("Fishing", "Hunt Sharks and Whales"),
+  new RecreationalActivity("Gaming", "Play Video games in the onboard room"),
+  new RecreationalActivity("Yoga", "Relax with onboard yoga sessions"),
 ];
 
 const ADVANCE_BOOKING_DISCOUNT_DAYS = 120;
@@ -66,21 +70,18 @@ cruiseCompany.setRoute(
 
 const payment = new Payment(500, true);
 
-const exampleRoute: Route = {
-  name: "Example Route",
-  forwardRoute: ["Batumi", "Sochi", "Antalya", "Alexandria"],
-  backRoute: ["Alexandria", "Antalya", "Sochi", "Batumi"],
-  departureDate: new Date("2023-01-01"),
-  arrivalDate: new Date("2023-01-10"),
-};
+// Create an instance of the Route class
+const routeInstance = new Route(
+  "Example Route",
+  ["Batumi", "Sochi", "Antalya", "Alexandria", "City B"],
+  new Date("2023-01-01"),
+  new Date("2023-01-10"),
+  ["Alexandria", "Antalya", "Sochi", "Batumi"]
+);
 
-// Get all routes
-const routes = cruiseCompany.getRoutes();
-console.log("Available Routes:", routes);
-
-const booking = new Booking(
+const booking = new BookingService(
   passenger,
-  exampleRoute,
+  routeInstance,
   "Tour to Awesome Destination",
   CabinType.Luxury,
   payment,
@@ -91,22 +92,22 @@ const booking = new Booking(
 cruiseCompany.bookCruise(booking);
 
 // Create crew members
-const captain = new CrewMember("Jack Sparrow", CrewMemberType.Captain);
-const mechanic = new CrewMember("Jason Statham", CrewMemberType.Mechanic);
-const chef = new CrewMember("Gordon Ramsay", CrewMemberType.Chef);
-const cleaner = new CrewMember("David Gogins", CrewMemberType.Cleaner);
+// const captain = new CrewMember("Jack Sparrow", CrewMemberType.Captain);
+// const mechanic = new CrewMember("Jason Statham", CrewMemberType.Mechanic);
+// const chef = new CrewMember("Gordon Ramsay", CrewMemberType.Chef);
+// const cleaner = new CrewMember("David Gogins", CrewMemberType.Cleaner);
 
 // Add crew members
-cruiseCompany.addCrewMember(captain);
-cruiseCompany.addCrewMember(mechanic);
-cruiseCompany.addCrewMember(chef);
-cruiseCompany.addCrewMember(cleaner);
+// cruiseCompany.addCrewMember(captain);
+// cruiseCompany.addCrewMember(mechanic);
+// cruiseCompany.addCrewMember(chef);
+// cruiseCompany.addCrewMember(cleaner);
 
 // Assign tasks to crew members
-captain.assignGeneralTask(new Task("Lead the team to victory"));
-mechanic.assignGeneralTask(new Task("Inspect engine"));
-chef.assignDailyTask(new Task("Plan meals"));
-cleaner.assignDailyTask(new Task("Clean everything"));
+// captain.assignGeneralTask(new Task("Lead the team to victory"));
+// mechanic.assignGeneralTask(new Task("Inspect engine"));
+// chef.assignDailyTask(new Task("Plan meals"));
+// cleaner.assignDailyTask(new Task("Clean everything"));
 
 // Get all crew members and their tasks
 const crewMembers = cruiseCompany.getCrewMembers();
