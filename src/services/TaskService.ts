@@ -14,7 +14,7 @@ export class TaskService {
     return this.description;
   }
 
-  taskAssignment(crewMember: CrewMember, task: TaskService): void {
+  assignDailyTask(crewMember: CrewMember, task: TaskService): void {
     console.log(
       `Task assigned to ${crewMember.getName()}: ${task.getDescription()}`
     );

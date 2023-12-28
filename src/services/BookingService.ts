@@ -4,6 +4,8 @@ import { CabinType } from "../types/enums";
 import { PaymentService } from "./PaymentService";
 
 export class BookingService {
+  private readonly bookings: BookingService[] = [];
+
   constructor(
     public passenger: Passenger,
     public route: Route,
@@ -12,6 +14,10 @@ export class BookingService {
     public payment: PaymentService,
     public additionalServices: string[] = []
   ) {}
+
+  getBookings(): BookingService[] {
+    return this.bookings;
+  }
 
   isAdvanceBooking(advanceBookingDays: number): boolean {
     const currentDate = new Date();

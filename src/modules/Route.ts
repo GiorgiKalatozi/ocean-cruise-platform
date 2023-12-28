@@ -1,6 +1,7 @@
 import { Location } from "../types/types";
 
 export class Route {
+  private routes: Route[] = [];
   private name: string;
   private forwardRoute: Location[];
   private backRoute?: Location[];
@@ -39,5 +40,17 @@ export class Route {
 
   getArrivalDate(): Date {
     return this.arrivalDate;
+  }
+
+  setRoute(
+    name: string,
+    forwardRoute: Location[],
+    backRoute: Location[] | undefined,
+    departureDate: Date,
+    arrivalDate: Date
+  ): void {
+    this.routes.push(
+      new Route(name, forwardRoute, departureDate, arrivalDate, backRoute)
+    );
   }
 }
