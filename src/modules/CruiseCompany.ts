@@ -1,5 +1,6 @@
 import { BookingService } from "../services/BookingService";
 import { NotificationService } from "../services/NotificationService";
+import { NOTIFICATION_MESSAGE } from "../utils/constants";
 import { CrewMember } from "./CrewMember";
 import { CruiseShip } from "./CruiseShip";
 import { Discount } from "./Discount";
@@ -60,14 +61,13 @@ export class CruiseCompany {
   }
 
   public rescheduleTour(newDepartureDate: Date): void {
-    console.log(`The tour has been rescheduled to ${newDepartureDate}`);
     this.notifyPassengers(
       `The cruise has been rescheduled. The new departure date is ${newDepartureDate}`
     );
   }
 
   public notifyPassengersBeforeTour(): void {
-    const oneWeekInMillis = 7 * 24 * 60 * 60 * 1000; // One week in milliseconds
+    const oneWeekInMillis = 7 * 24 * 60 * 60 * 1000;
     const currentDate = new Date();
 
     console.log("Notifying passengers about the upcoming tour...");
@@ -77,16 +77,13 @@ export class CruiseCompany {
       const tourStartDate = booking.route.departureDate.getTime();
       const notificationDate = new Date(tourStartDate - oneWeekInMillis);
 
-      // Check if it's time to send the notification
       if (currentDate >= notificationDate) {
         const passenger = this.findPassengerByBooking(booking);
-        const notificationMessage =
-          "Your cruise is about to begin. Please check-in and undergo medical examination.";
 
         this.notificationService
-          .sendSMS(notificationMessage, passenger.getPhoneNumber())
-          .sendEmail(notificationMessage, passenger.getEmail())
-          .sendPushNotification(notificationMessage, passenger.getID());
+          .sendSMS(NOTIFICATION_MESSAGE, passenger.getPhoneNumber())
+          .sendEmail(NOTIFICATION_MESSAGE, passenger.getEmail())
+          .sendPushNotification(NOTIFICATION_MESSAGE, passenger.getID());
       }
     });
   }
@@ -102,9 +99,8 @@ export class CruiseCompany {
   }
 
   private findPassengerByBooking(booking: BookingService): Passenger {
-    // To identify passengers by booking, I should be using IDs but IDGAF.
     return this.passengers.find(
-      (passenger) => passenger.name === booking.passenger.name
+      (passenger) => passenger.getID() === booking.passenger.getID()
     )!;
   }
 }
