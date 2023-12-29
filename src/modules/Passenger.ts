@@ -1,8 +1,8 @@
-import { NotificationService } from "../services/NotificationService";
-import { Person } from "./Person";
 import { BookingService } from "../services/BookingService";
+import { NotificationService } from "../services/NotificationService";
 
-export class Passenger extends Person {
+export class Passenger {
+  private readonly name: string;
   private readonly phoneNumber: string;
   private readonly email: string;
   private readonly ID: string;
@@ -16,7 +16,7 @@ export class Passenger extends Person {
     ID: string,
     notificationService: NotificationService
   ) {
-    super(name);
+    this.name = name;
     this.phoneNumber = phoneNumber;
     this.email = email;
     this.ID = ID;
@@ -25,6 +25,10 @@ export class Passenger extends Person {
 
   public getID(): string {
     return this.ID;
+  }
+
+  public getName(): string {
+    return this.name;
   }
 
   public getPhoneNumber(): string {

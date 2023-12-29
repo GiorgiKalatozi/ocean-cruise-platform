@@ -22,10 +22,6 @@ export class CrewMember extends Passenger {
     this.taskService = taskService;
   }
 
-  public getName() {
-    return this.name;
-  }
-
   public getCrewMemberType(): CrewMemberType {
     return this.crewMemberType;
   }
