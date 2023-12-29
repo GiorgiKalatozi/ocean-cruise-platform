@@ -5,22 +5,21 @@ export class Discount {
     public expirationDate: Date
   ) {}
 
-  isStillValid(): boolean {
+  public isStillValid(): boolean {
     const currentDate = new Date();
     return currentDate <= this.expirationDate;
   }
 
-  applyDiscount(price: number): number {
+  public applyDiscount(price: number): number {
     if (this.isStillValid()) {
       const discountAmount = (this.percentage / 100) * price;
       return price - discountAmount;
-    } else {
-      console.log(`${this.name} discount has expired.`);
-      return price;
     }
+    console.log(`${this.name} discount has expired.`);
+    return price;
   }
 
-  getDetails(): string {
+  public getDetails(): string {
     const validityStatus = this.isStillValid() ? "valid" : "expired";
     return `${this.name}: ${this.percentage}% discount (Status: ${validityStatus})`;
   }

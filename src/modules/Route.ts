@@ -22,27 +22,27 @@ export class Route {
     this.arrivalDate = arrivalDate;
   }
 
-  getName(): string {
+  public getName(): string {
     return this.name;
   }
 
-  getForwardRoute(): Location[] {
+  public getForwardRoute(): Location[] {
     return this.forwardRoute;
   }
 
-  getBackRoute(): Location[] | undefined {
+  public getBackRoute(): Location[] | undefined {
     return this.backRoute;
   }
 
-  getDepartureDate(): Date {
+  public getDepartureDate(): Date {
     return this.departureDate;
   }
 
-  getArrivalDate(): Date {
+  public getArrivalDate(): Date {
     return this.arrivalDate;
   }
 
-  setRoute(
+  public setRoute(
     name: string,
     forwardRoute: Location[],
     backRoute: Location[] | undefined,

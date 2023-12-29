@@ -15,11 +15,11 @@ export class BookingService {
     public additionalServices: string[] = []
   ) {}
 
-  getBookings(): BookingService[] {
+  public getBookings(): BookingService[] {
     return this.bookings;
   }
 
-  isAdvanceBooking(advanceBookingDays: number): boolean {
+  public isAdvanceBooking(advanceBookingDays: number): boolean {
     const currentDate = new Date();
     const departureDate = this.route.getDepartureDate();
 
@@ -31,7 +31,7 @@ export class BookingService {
     return daysDifference >= advanceBookingDays;
   }
 
-  applyAdvanceBookingDiscount(
+  public applyAdvanceBookingDiscount(
     advanceBookingDiscountDays: number,
     discountPercentage: number
   ): void {

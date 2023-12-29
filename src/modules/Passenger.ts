@@ -23,19 +23,19 @@ export class Passenger extends Person {
     this.notificationService = notificationService;
   }
 
-  getID(): string {
+  public getID(): string {
     return this.ID;
   }
 
-  getPhoneNumber(): string {
+  public getPhoneNumber(): string {
     return this.phoneNumber;
   }
 
-  getEmail(): string {
+  public getEmail(): string {
     return this.email;
   }
 
-  notifyPassengers(message: string): void {
+  public notifyPassengers(message: string): void {
     this.bookings.forEach((booking) => {
       this.notificationService.sendSMS(message, booking.passenger.phoneNumber);
       this.notificationService.sendEmail(message, booking.passenger.email);

@@ -21,19 +21,19 @@ export class CruiseShip {
     this.recreationalActivities = includedActivities;
   }
 
-  getShipName(): string {
+  public getShipName(): string {
     return this.name;
   }
 
-  getNumberOfCabins(): number {
+  public getNumberOfCabins(): number {
     return this.numberOfCabins;
   }
 
-  getCabinTypes(): CabinType {
+  public getCabinTypes(): CabinType {
     return this.cabinTypes;
   }
 
-  getIncludedActivities(cabinType: CabinType): RecreationalActivity[] {
+  public getIncludedActivities(cabinType: CabinType): RecreationalActivity[] {
     return this.recreationalActivities[cabinType];
   }
 }

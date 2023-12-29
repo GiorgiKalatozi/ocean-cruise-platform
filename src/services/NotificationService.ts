@@ -1,13 +1,16 @@
 export class NotificationService {
-  sendSMS(message: string, phoneNumber: string): void {
+  public sendSMS(message: string, phoneNumber: string): this {
     console.log(`Sending SMS to ${phoneNumber}: ${message}`);
+    return this;
   }
 
-  sendEmail(message: string, email: string): void {
+  public sendEmail(message: string, email: string): this {
     console.log(`Sending Email to ${email}: ${message}`);
+    return this;
   }
 
-  sendPushNotification(message: string, deviceId: string): void {
+  public sendPushNotification(message: string, deviceId: string): this {
     console.log(`Sending Push Notification to ${deviceId}: ${message}`);
+    return this;
   }
 }

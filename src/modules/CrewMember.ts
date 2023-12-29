@@ -22,20 +22,20 @@ export class CrewMember extends Passenger {
     this.taskService = taskService;
   }
 
-  getName() {
+  public getName() {
     return this.name;
   }
 
-  getCrewMemberType(): CrewMemberType {
+  public getCrewMemberType(): CrewMemberType {
     return this.crewMemberType;
   }
 
-  assignTask(task: TaskService): void {
+  public assignTask(task: TaskService): void {
     this.assignedTasks.push(task);
     this.taskService.assignDailyTask(this, task);
   }
 
-  unassignTask(task: TaskService): void {
+  public unassignTask(task: TaskService): void {
     const taskIndex = this.assignedTasks.indexOf(task);
     if (taskIndex !== -1) {
       this.assignedTasks.splice(taskIndex, 1);

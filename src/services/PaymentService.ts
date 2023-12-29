@@ -1,11 +1,11 @@
 export class PaymentService {
   constructor(public amount: number, public isDeposit: boolean) {}
 
-  makePayment(): void {
+  public makePayment(): void {
     console.log(`Payment of $${this.amount} processed.`);
   }
 
-  refundPayment(): void {
+  public refundPayment(): void {
     console.log(`Refund of $${this.amount} processed.`);
   }
 }

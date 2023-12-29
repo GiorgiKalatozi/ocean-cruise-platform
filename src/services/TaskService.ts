@@ -6,21 +6,21 @@ export class TaskService {
     public isCompleted: boolean = false
   ) {}
 
-  completeTask(): void {
+  public completeTask(): void {
     this.isCompleted = true;
   }
 
-  getDescription(): string {
+  public getDescription(): string {
     return this.description;
   }
 
-  assignDailyTask(crewMember: CrewMember, task: TaskService): void {
+  public assignDailyTask(crewMember: CrewMember, task: TaskService): void {
     console.log(
       `Task assigned to ${crewMember.getName()}: ${task.getDescription()}`
     );
   }
 
-  taskStatusUpdate(crewMember: CrewMember, task: TaskService): void {
+  public taskStatusUpdate(crewMember: CrewMember, task: TaskService): void {
     console.log(
       `Task status updated by ${crewMember.getName()}: ${task.getDescription()} is completed: ${
         task.isCompleted
@@ -28,7 +28,7 @@ export class TaskService {
     );
   }
 
-  taskUnassignment(crewMember: CrewMember, task: TaskService): void {
+  public taskUnassignment(crewMember: CrewMember, task: TaskService): void {
     console.log(
       `Task unassigned from ${crewMember.getName()}: ${task.getDescription()}`
     );

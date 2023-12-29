@@ -20,15 +20,15 @@ export class CruiseCompany {
     this.passengers = passengers;
   }
 
-  getCrewMembers(): CrewMember[] {
+  public getCrewMembers(): CrewMember[] {
     return this.crewMembers;
   }
 
-  addCrewMember(crewMember: CrewMember): void {
+  public addCrewMember(crewMember: CrewMember): void {
     this.crewMembers.push(crewMember);
   }
 
-  removeCrewMember(crewMember: CrewMember): void {
+  public removeCrewMember(crewMember: CrewMember): void {
     const index = this.crewMembers.indexOf(crewMember);
     if (index !== -1) {
       this.crewMembers.splice(index, 1);
@@ -38,35 +38,35 @@ export class CruiseCompany {
     }
   }
 
-  applyDiscount(price: number, discount: Discount): number {
+  public applyDiscount(price: number, discount: Discount): number {
     return discount.applyDiscount(price);
   }
 
-  bookCruise(booking: BookingService): void {
+  public bookCruise(booking: BookingService): void {
     this.bookings.push(booking);
     console.log("Booking successful!");
   }
 
-  beginTour(): void {
+  public beginTour(): void {
     this.notifyPassengers(
       "Your cruise has officially begun. Enjoy your journey!"
     );
   }
 
-  cancelTour(): void {
+  public cancelTour(): void {
     this.notifyPassengers(
       "We regret to inform you that the cruise has been canceled."
     );
   }
 
-  rescheduleTour(newDepartureDate: Date): void {
+  public rescheduleTour(newDepartureDate: Date): void {
     console.log(`The tour has been rescheduled to ${newDepartureDate}`);
     this.notifyPassengers(
       `The cruise has been rescheduled. The new departure date is ${newDepartureDate}`
     );
   }
 
-  notifyPassengersBeforeTour(): void {
+  public notifyPassengersBeforeTour(): void {
     const oneWeekInMillis = 7 * 24 * 60 * 60 * 1000; // One week in milliseconds
     const currentDate = new Date();
 
@@ -83,18 +83,10 @@ export class CruiseCompany {
         const notificationMessage =
           "Your cruise is about to begin. Please check-in and undergo medical examination.";
 
-        this.notificationService.sendSMS(
-          notificationMessage,
-          passenger.getPhoneNumber()
-        );
-        this.notificationService.sendEmail(
-          notificationMessage,
-          passenger.getEmail()
-        );
-        this.notificationService.sendPushNotification(
-          notificationMessage,
-          passenger.getID()
-        );
+        this.notificationService
+          .sendSMS(notificationMessage, passenger.getPhoneNumber())
+          .sendEmail(notificationMessage, passenger.getEmail())
+          .sendPushNotification(notificationMessage, passenger.getID());
       }
     });
   }
@@ -102,9 +94,10 @@ export class CruiseCompany {
   private notifyPassengers(message: string): void {
     this.bookings.forEach((booking) => {
       const passenger = this.findPassengerByBooking(booking);
-      this.notificationService.sendSMS(message, passenger.getPhoneNumber());
-      this.notificationService.sendEmail(message, passenger.getEmail());
-      this.notificationService.sendPushNotification(message, passenger.getID());
+      this.notificationService
+        .sendSMS(message, passenger.getPhoneNumber())
+        .sendEmail(message, passenger.getEmail())
+        .sendPushNotification(message, passenger.getID());
     });
   }
 
