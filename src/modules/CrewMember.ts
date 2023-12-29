@@ -29,6 +29,7 @@ export class CrewMember extends Passenger {
   getCrewMemberType(): CrewMemberType {
     return this.crewMemberType;
   }
+
   assignTask(task: TaskService): void {
     this.assignedTasks.push(task);
     this.taskService.assignDailyTask(this, task);
