@@ -1,12 +1,20 @@
+import { NotificationService } from "../services/NotificationService";
 import { CrewMemberType } from "../types/enums";
-import { Person } from "./Person";
+import { Passenger } from "./Passenger";
 
-export class CrewMember extends Person {
+export class CrewMember extends Passenger {
   private readonly crewMemberType: CrewMemberType;
   private readonly crewMembers: CrewMember[] = [];
 
-  constructor(name: string, crewMemberType: CrewMemberType) {
-    super(name);
+  constructor(
+    name: string,
+    phoneNumber: string,
+    email: string,
+    ID: string,
+    notificationService: NotificationService,
+    crewMemberType: CrewMemberType
+  ) {
+    super(name, phoneNumber, email, ID, notificationService);
     this.crewMemberType = crewMemberType;
   }
 

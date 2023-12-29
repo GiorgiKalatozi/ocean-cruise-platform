@@ -5,7 +5,7 @@ import { BookingService } from "../services/BookingService";
 export class Passenger extends Person {
   private readonly phoneNumber: string;
   private readonly email: string;
-  private readonly deviceId: string;
+  private readonly ID: string;
   private readonly notificationService: NotificationService;
   private readonly bookings: BookingService[] = [];
 
@@ -13,13 +13,13 @@ export class Passenger extends Person {
     name: string,
     phoneNumber: string,
     email: string,
-    deviceId: string,
+    ID: string,
     notificationService: NotificationService
   ) {
     super(name);
     this.phoneNumber = phoneNumber;
     this.email = email;
-    this.deviceId = deviceId;
+    this.ID = ID;
     this.notificationService = notificationService;
   }
 
@@ -31,17 +31,17 @@ export class Passenger extends Person {
     return this.email;
   }
 
-  getDeviceId(): string {
-    return this.deviceId;
+  getID(): string {
+    return this.ID;
   }
 
-  public notifyPassengers(message: string): void {
+  notifyPassengers(message: string): void {
     this.bookings.forEach((booking) => {
       this.notificationService.sendSMS(message, booking.passenger.phoneNumber);
       this.notificationService.sendEmail(message, booking.passenger.email);
       this.notificationService.sendPushNotification(
         message,
-        booking.passenger.deviceId
+        booking.passenger.ID
       );
     });
   }

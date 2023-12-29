@@ -9,7 +9,6 @@ import { RecreationalActivity } from "./RecreationalActivity";
 export class CruiseCompany {
   private readonly bookings: BookingService[] = [];
   private readonly crewMembers: CrewMember[] = [];
-  private readonly discounts: Discount[] = [];
   private readonly passengers: Passenger[];
 
   constructor(
@@ -31,8 +30,8 @@ export class CruiseCompany {
     this.crewMembers.push(crewMember);
   }
 
-  addDiscount(discount: Discount): void {
-    this.discounts.push(discount);
+  applyDiscount(price: number, discount: Discount): number {
+    return discount.applyDiscount(price);
   }
 
   bookCruise(booking: BookingService): void {
@@ -41,14 +40,12 @@ export class CruiseCompany {
   }
 
   beginTour(): void {
-    console.log("The tour has begun!");
     this.notifyPassengers(
       "Your cruise has officially begun. Enjoy your journey!"
     );
   }
 
   cancelTour(): void {
-    console.log("The tour has been canceled.");
     this.notifyPassengers(
       "We regret to inform you that the cruise has been canceled."
     );
@@ -88,7 +85,7 @@ export class CruiseCompany {
         );
         this.notificationService.sendPushNotification(
           notificationMessage,
-          passenger.getDeviceId()
+          passenger.getID()
         );
       }
     });
@@ -99,15 +96,12 @@ export class CruiseCompany {
       const passenger = this.findPassengerByBooking(booking);
       this.notificationService.sendSMS(message, passenger.getPhoneNumber());
       this.notificationService.sendEmail(message, passenger.getEmail());
-      this.notificationService.sendPushNotification(
-        message,
-        passenger.getDeviceId()
-      );
+      this.notificationService.sendPushNotification(message, passenger.getID());
     });
   }
 
   private findPassengerByBooking(booking: BookingService): Passenger {
-    // To identify passengers by booking, I should be using IDs but IDGAF
+    // To identify passengers by booking, I should be using IDs but IDGAF.
     return this.passengers.find(
       (passenger) => passenger.name === booking.passenger.name
     )!;
