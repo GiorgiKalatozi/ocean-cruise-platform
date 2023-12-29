@@ -33,7 +33,6 @@ export class CrewMember extends Passenger {
   assignTask(task: TaskService): void {
     this.assignedTasks.push(task);
     this.taskService.assignDailyTask(this, task);
-    console.log(`Task assigned to ${this.getName()}: ${task.getDescription()}`);
   }
 
   unassignTask(task: TaskService): void {
