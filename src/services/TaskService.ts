@@ -27,4 +27,10 @@ export class TaskService {
       }`
     );
   }
+
+  taskUnassignment(crewMember: CrewMember, task: TaskService): void {
+    console.log(
+      `Task unassigned from ${crewMember.getName()}: ${task.getDescription()}`
+    );
+  }
 }

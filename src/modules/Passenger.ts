@@ -23,16 +23,16 @@ export class Passenger extends Person {
     this.notificationService = notificationService;
   }
 
+  getID(): string {
+    return this.ID;
+  }
+
   getPhoneNumber(): string {
     return this.phoneNumber;
   }
 
   getEmail(): string {
     return this.email;
-  }
-
-  getID(): string {
-    return this.ID;
   }
 
   notifyPassengers(message: string): void {

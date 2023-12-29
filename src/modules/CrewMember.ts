@@ -1,10 +1,12 @@
 import { NotificationService } from "../services/NotificationService";
+import { TaskService } from "../services/TaskService";
 import { CrewMemberType } from "../types/enums";
 import { Passenger } from "./Passenger";
 
 export class CrewMember extends Passenger {
   private readonly crewMemberType: CrewMemberType;
-  private readonly crewMembers: CrewMember[] = [];
+  private readonly assignedTasks: TaskService[] = [];
+  private readonly taskService: TaskService;
 
   constructor(
     name: string,
@@ -12,10 +14,12 @@ export class CrewMember extends Passenger {
     email: string,
     ID: string,
     notificationService: NotificationService,
-    crewMemberType: CrewMemberType
+    crewMemberType: CrewMemberType,
+    taskService: TaskService
   ) {
     super(name, phoneNumber, email, ID, notificationService);
     this.crewMemberType = crewMemberType;
+    this.taskService = taskService;
   }
 
   getName() {
@@ -25,22 +29,17 @@ export class CrewMember extends Passenger {
   getCrewMemberType(): CrewMemberType {
     return this.crewMemberType;
   }
-
-  getCrewMembers(): CrewMember[] {
-    return this.crewMembers;
+  assignTask(task: TaskService): void {
+    this.assignedTasks.push(task);
+    this.taskService.assignDailyTask(this, task);
+    console.log(`Task assigned to ${this.getName()}: ${task.getDescription()}`);
   }
 
-  addCrewMember(crewMember: CrewMember): void {
-    this.crewMembers.push(crewMember);
-  }
-
-  removeCrewMember(crewMember: CrewMember): void {
-    const index = this.crewMembers.indexOf(crewMember);
-    if (index !== -1) {
-      this.crewMembers.splice(index, 1);
-      console.log(`${crewMember.getName()} has been removed from the crew.`);
-    } else {
-      console.log(`${crewMember.getName()} is not in the crew.`);
+  unassignTask(task: TaskService): void {
+    const taskIndex = this.assignedTasks.indexOf(task);
+    if (taskIndex !== -1) {
+      this.assignedTasks.splice(taskIndex, 1);
+      this.taskService.taskUnassignment(this, task);
     }
   }
 }
