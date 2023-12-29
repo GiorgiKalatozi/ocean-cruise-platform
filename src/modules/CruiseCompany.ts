@@ -1,10 +1,9 @@
 import { BookingService } from "../services/BookingService";
 import { NotificationService } from "../services/NotificationService";
-import { CabinType } from "../types/enums";
 import { CrewMember } from "./CrewMember";
+import { CruiseShip } from "./CruiseShip";
 import { Discount } from "./Discount";
 import { Passenger } from "./Passenger";
-import { RecreationalActivity } from "./RecreationalActivity";
 
 export class CruiseCompany {
   private readonly bookings: BookingService[] = [];
@@ -13,9 +12,8 @@ export class CruiseCompany {
 
   constructor(
     public name: string,
-    public cabinType: CabinType,
-    public recreationalActivities: RecreationalActivity[],
     public notificationService: NotificationService,
+    public cruiseShip: CruiseShip,
     passengers: Passenger[]
   ) {
     this.notificationService = notificationService;

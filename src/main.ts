@@ -1,5 +1,6 @@
 import { CrewMember } from "./modules/CrewMember";
 import { CruiseCompany } from "./modules/CruiseCompany";
+import { CruiseShip } from "./modules/CruiseShip";
 import { Discount } from "./modules/Discount";
 import { Passenger } from "./modules/Passenger";
 import { RecreationalActivity } from "./modules/RecreationalActivity";
@@ -41,18 +42,44 @@ const passenger4 = new Passenger(
   notificationService
 );
 
-const recreationalActivities: RecreationalActivity[] = [
-  new RecreationalActivity("Swimming", "Enjoy a refreshing swim in the pool"),
-  new RecreationalActivity("Fishing", "Hunt Sharks and Whales"),
-  new RecreationalActivity("Gaming", "Play Video games in the onboard room"),
-  new RecreationalActivity("Yoga", "Relax with onboard yoga sessions"),
-];
+const includedActivities: { [key in CabinType]: RecreationalActivity[] } = {
+  [CabinType.Economy]: [
+    new RecreationalActivity(
+      "Swimming",
+      "Enjoy a refreshing swim in the pool."
+    ),
+    new RecreationalActivity("Movie Night", "Watch a movie under the stars."),
+  ],
+  [CabinType.Business]: [
+    new RecreationalActivity(
+      "Spa Day",
+      "Pamper yourself with a relaxing spa day."
+    ),
+    new RecreationalActivity("Fine Dining", "Experience gourmet dining."),
+  ],
+  [CabinType.Luxury]: [
+    new RecreationalActivity(
+      "Private Butler",
+      "Personalized service with a private butler."
+    ),
+    new RecreationalActivity(
+      "Concierge Service",
+      "Exclusive concierge service."
+    ),
+  ],
+};
+
+const titanic = new CruiseShip(
+  "Titanic",
+  2000,
+  CabinType.Business,
+  includedActivities
+);
 
 const cruiseCompany = new CruiseCompany(
   "Porto Franco",
-  CabinType.Business,
-  recreationalActivities,
   notificationService,
+  titanic,
   [passenger1, passenger2, passenger3, passenger4]
 );
 
