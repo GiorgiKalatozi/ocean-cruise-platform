@@ -21,24 +21,6 @@ export class CruiseCompany {
     this.passengers = passengers;
   }
 
-  public getCrewMembers(): CrewMember[] {
-    return this.crewMembers;
-  }
-
-  public addCrewMember(crewMember: CrewMember): void {
-    this.crewMembers.push(crewMember);
-  }
-
-  public removeCrewMember(crewMember: CrewMember): void {
-    const index = this.crewMembers.indexOf(crewMember);
-    if (index !== -1) {
-      this.crewMembers.splice(index, 1);
-      console.log(`${crewMember.getName()} has been removed from the crew.`);
-    } else {
-      console.log(`${crewMember.getName()} is not in the crew.`);
-    }
-  }
-
   public applyDiscount(price: number, discount: Discount): number {
     return discount.applyDiscount(price);
   }
